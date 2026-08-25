@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rumi • My Daily Life</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --pink: #ff5fa2;
+      --pink-light: #ffe4f1;
+      --purple: #8c6cff;
+      --purple-dark: #4d3b9e;
+      --lavender: #f2edff;
+      --black: #191722;
+      --gray: #777482;
+      --white: #ffffff;
+      --green: #77c9a2;
+      --yellow: #ffd66b;
+      --shadow: 0 12px 35px rgba(78, 51, 111, .12);
+    }
+
+    body {
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, #ffe0ef 0, transparent 28%),
+        radial-gradient(circle at top right, #e9e0ff 0, transparent 30%),
+        #faf8ff;
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 28px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 27px;
+      box-shadow: 0 8px 22px rgba(255, 95, 162, .25);
+    }
+
+    .brand h1 {
+      font-size: 22px;
+    }
+
+    .brand p {
+      color: var(--gray);
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .date {
+      background: white;
+      padding: 12px 18px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      color: var(--purple-dark);
+    }
+
+    main {
+      width: min(1200px, 90%);
+      margin: auto;
+      padding-bottom: 60px;
+    }
+
+    /* HERO */
+
+    .hero {
+      background: linear-gradient(135deg, #201b32, #4f3c93);
+      color: white;
+      border-radius: 32px;
+      padding: 35px;
+      min-height: 250px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(48, 32, 82, .22);
+    }
+
+    .hero::before {
+      content: "✦";
+      position: absolute;
+      right: 8%;
+      top: 15%;
+      font-size: 100px;
+      opacity: .15;
+    }
+
+    .hero::after {
+      content: "✧  ✦  ✧  ✦";
+      position: absolute;
+      right: 5%;
+      bottom: 25px;
+      font-size: 25px;
+      opacity: .35;
+    }
+
+    .hero small {
+      color: #f5b5d5;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .hero h2 {
+      font-size: clamp(32px, 5vw, 55px);
+      margin: 10px 0;
+      max-width: 700px;
+      line-height: 1;
+    }
+
+    .hero p {
+      max-width: 600px;
+      color: #ddd7ee;
+      line-height: 1.6;
+    }
+
+    .hero .quote {
+      margin-top: 22px;
+      color: #ffb8d7;
+      font-weight: bold;
+    }
+
+    /* GRID */
+
+    .section-title {
+      margin: 35px 0 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-title h3 {
+      font-size: 21px;
+    }
+
+    .section-title span {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(140, 108, 255, .08);
+    }
+
+    .card .icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--pink-light);
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    .card h4 {
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .time {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 9px;
+      border-radius: 10px;
+      background: var(--lavender);
+      color: var(--purple-dark);
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    /* ROUTINE */
+
+    .routine {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 18px;
+    }
+
+    .timeline {
+      background: white;
+      border-radius: 28px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 75px 35px 1fr;
+      align-items: center;
+      min-height: 67px;
+      border-bottom: 1px solid #eeeaf5;
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .clock {
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--purple-dark);
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: var(--pink);
+      border-radius: 50%;
+      box-shadow: 0 0 0 6px var(--pink-light);
+    }
+
+    .activity strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .activity span {
+      color: var(--gray);
+      font-size: 12px;
+    }
+
+    /* HABITS */
+
+    .habits {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .habit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #faf9ff;
+      padding: 13px;
+      border-radius: 16px;
+    }
+
+    .habit input {
+      appearance: none;
+      width: 21px;
+      height: 21px;
+      border: 2px solid #c8bee9;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .habit input:checked {
+      background: var(--pink);
+      border-color: var(--pink);
+      position: relative;
+    }
+
+    .habit input:checked::after {
+      content: "✓";
+      color: white;
+      position: absolute;
+      font-size: 14px;
+      left: 3px;
+      top: -1px;
+    }
+
+    .habit label {
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    /* PROGRESS */
+
+    .progress-card {
+      background: linear-gradient(135deg, #fff0f7, #f0ebff);
+      border-radius: 28px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .progress-number {
+      font-size: 42px;
+      font-weight: bold;
+      color: var(--purple-dark);
+      margin: 8px 0;
+    }
+
+    .bar {
+      width: 100%;
+      height: 12px;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+      border-radius: 20px;
+      transition: .4s;
+    }
+
+    /* WEEK */
+
+    .week {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .day {
+      background: white;
+      border-radius: 20px;
+      padding: 15px 10px;
+      min-height: 130px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .day strong {
+      display: block;
+      font-size: 12px;
+      color: var(--purple-dark);
+      margin-bottom: 12px;
+    }
+
+    .day p {
+      font-size: 11px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .day.active {
+      background: linear-gradient(145deg, #fff0f7, #f1ecff);
+      border: 2px solid #f2b1d0;
+    }
+
+    /* RESET */
+
+    .reset {
+      margin-top: 18px;
+      width: 100%;
+      border: none;
+      padding: 13px;
+      border-radius: 15px;
+      background: var(--black);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .reset:hover {
+      opacity: .9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #96919f;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .routine {
+        grid-template-columns: 1fr;
+      }
+
+      .week {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 20px 5%;
+      }
+
+      .date {
+        display: none;
+      }
+
+      main {
+        width: 92%;
+      }
+
+      .hero {
+        padding: 26px;
+        border-radius: 25px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .week {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .timeline-item {
+        grid-template-columns: 65px 25px 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="avatar">✦</div>
+
+    <div>
+      <h1>Rumi Daily</h1>
+      <p>Minha vida, meu ritmo, minha energia ✨</p>
+    </div>
+  </div>
+
+  <div class="date" id="today"></div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <small>♡ DAILY RESET</small>
+
+    <h2>Hoje eu cuido de mim também.</h2>
+
+    <p>
+      Uma rotina organizada não precisa ser perfeita.
+      Ela precisa funcionar para a vida que eu realmente tenho.
+    </p>
+
+    <div class="quote">
+      ✦ Pequenos hábitos. Grandes mudanças.
+    </div>
+
+  </section>
+
+
+  <!-- PRIORIDADES -->
+
+  <div class="section-title">
+    <h3>Minhas prioridades</h3>
+    <span>O que realmente importa</span>
+  </div>
+
+  <section class="grid">
+
+    <div class="card">
+      <div class="icon">💼</div>
+      <h4>Trabalho</h4>
+      <p>Produzir dentro do horário planejado sem transformar a noite em expediente.</p>
+      <span class="time">08:00 → 18:00</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">👧</div>
+      <h4>Família</h4>
+      <p>Presença de verdade para minha filha e meu marido.</p>
+      <span class="time">Todos os dias</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎓</div>
+      <h4>Faculdade</h4>
+      <p>Estudar com constância sem sacrificar meu sono.</p>
+      <span class="time">3x por semana</span>
+    </div>
+
+    <div class="card">
+      <div class="icon">✨</div>
+      <h4>Espiritualidade</h4>
+      <p>Manter minha conexão espiritual durante a semana.</p>
+      <span class="time">Pequenos momentos</span>
+    </div>
+
+  </section>
+
+
+  <!-- ROTINA -->
+
+  <div class="section-title">
+    <h3>Minha manhã</h3>
+    <span>Começar antes do mundo acelerar</span>
+  </div>
+
+  <section class="routine">
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="clock">05:30</div>
+        <div class="dot"></div>
+        <div class="activity">
+          <strong>☀️ Acordar</strong>
+          <span>Água + cama + abrir a janela</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="clock">05:40</div>
+        <div class="dot"></div>
+        <div class="activity">
+          <strong>🏋️ Exercício</strong>
+          <span>Bicicleta + pesos + elástico</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="clock">06:20</div>
+        <div class="dot"></div>
+        <div class="activity">
+          <strong>🚿 Banho + skincare</strong>
+          <span>Meu momento de autocuidado</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="clock">06:50</div>
+        <div class="dot"></div>
+        <div class="activity">
+          <strong>☕ Café da manhã</strong>
+          <span>Com calma, sem começar o dia correndo</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="clock">07:15</div>
+        <div class="dot"></div>
+        <div class="activity">
+          <strong>👧 Cecília</strong>
+          <span>Café + preparação para o dia</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="clock">08:00</div>
+        <div class="dot"></div>
+        <div class="activity">
+          <strong>💻 Trabalho</strong>
+          <span>Começar sem precisar correr</span>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- HABITS -->
+
+    <div class="card">
+
+      <h3 style="margin-bottom: 17px;">✨ Hábitos de hoje</h3>
+
+      <div class="habits">
+
+        <div class="habit">
+          <input type="checkbox" id="h1">
+          <label for="h1">Acordei às 05:30</label>
+        </div>
+
+        <div class="habit">
+          <input type="checkbox" id="h2">
+          <label for="h2">Fiz exercício</label>
+        </div>
+
+        <div class="habit">
+          <input type="checkbox" id="h3">
+          <label for="h3">Skincare</label>
+        </div>
+
+        <div class="habit">
+          <input type="checkbox" id="h4">
+          <label for="h4">Bebi água</label>
+        </div>
+
+        <div class="habit">
+          <input type="checkbox" id="h5">
+          <label for="h5">Fiz minha espiritualidade</label>
+        </div>
+
+        <div class="habit">
+          <input type="checkbox" id="h6">
+          <label for="h6">Estudei</label>
+        </div>
+
+        <div class="habit">
+          <input type="checkbox" id="h7">
+          <label for="h7">Tive tempo com minha família</label>
+        </div>
+
+        <div class="habit">
+          <input type="checkbox" id="h8">
+          <label for="h8">Desliguei às 22:00</label>
+        </div>
+
+      </div>
+
+      <button class="reset" onclick="resetHabits()">
+        Resetar o dia
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROGRESS -->
+
+  <div class="section-title">
+    <h3>Meu progresso de hoje</h3>
+    <span>Não precisa ser 100% ✨</span>
+  </div>
+
+  <section class="progress-card">
+
+    <p>Hábitos concluídos</p>
+
+    <div class="progress-number" id="progressNumber">
+      0%
+    </div>
+
+    <div class="bar">
+      <div class="bar-fill" id="progressBar"></div>
+    </div>
+
+    <p style="margin-top:12px;">
+      Consistência > perfeição.
+    </p>
+
+  </section>
+
+
+  <!-- SEMANA -->
+
+  <div class="section-title">
+    <h3>Minha semana</h3>
+    <span>Uma coisa de cada vez</span>
+  </div>
+
+  <section class="week">
+
+    <div class="day active">
+      <strong>SEG</strong>
+      <p>💼 Trabalho</p>
+      <p>✨ Sessão</p>
+      <p>❤️ Família</p>
+    </div>
+
+    <div class="day">
+      <strong>TER</strong>
+      <p>👧 Terapia</p>
+      <p>💼 Trabalho</p>
+      <p>🎓 Faculdade</p>
+    </div>
+
+    <div class="day">
+      <strong>QUA</strong>
+      <p>👧 Terapia</p>
+      <p>💼 Trabalho</p>
+      <p>✨ Espiritual</p>
+    </div>
+
+    <div class="day">
+      <strong>QUI</strong>
+      <p>💼 Trabalho</p>
+      <p>🎓 Faculdade</p>
+      <p>🌱 Livre</p>
+    </div>
+
+    <div class="day">
+      <strong>SEX</strong>
+      <p>💼 Trabalho</p>
+      <p>📌 Pendências</p>
+      <p>❤️ Família</p>
+    </div>
+
+    <div class="day">
+      <strong>SÁB</strong>
+      <p>🏠 Faxina</p>
+      <p>💼 Trabalho</p>
+      <p>❤️ Família</p>
+    </div>
+
+    <div class="day">
+      <strong>DOM</strong>
+      <p>❤️ Família</p>
+      <p>✨ Espiritual</p>
+      <p>📋 Planejamento</p>
+    </div>
+
+  </section>
+
+
+  <!-- REGRAS -->
+
+  <div class="section-title">
+    <h3>Minhas regras</h3>
+    <span>Para não voltar ao caos</span>
+  </div>
+
+  <section class="grid">
+
+    <div class="card">
+      <div class="icon">🌙</div>
+      <h4>22:00 é dormir</h4>
+      <p>Não transformar a madrugada em segundo expediente.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🏠</div>
+      <h4>Casa funcional</h4>
+      <p>Manutenção durante a semana e faxina completa no sábado.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">💗</div>
+      <h4>Eu também importo</h4>
+      <p>Exercício, skincare, descanso e tempo para mim.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">⭐</div>
+      <h4>80% já é ótimo</h4>
+      <p>Um dia ruim não destrói uma rotina. Apenas continua no próximo.</p>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  Made with ✦ for my new era.
+</footer>
+
+
+<script>
+
+  // DATA
+
+  const today = new Date();
+
+  const formattedDate = today.toLocaleDateString("pt-BR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+  });
+
+  document.getElementById("today").textContent =
+    formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+
+
+  // HABITS
+
+  const checkboxes = document.querySelectorAll(
+    '.habit input[type="checkbox"]'
+  );
+
+  function updateProgress() {
+
+    const total = checkboxes.length;
+
+    const checked = [...checkboxes]
+      .filter(item => item.checked)
+      .length;
+
+    const percentage = Math.round(
+      (checked / total) * 100
+    );
+
+    document.getElementById("progressNumber")
+      .textContent = percentage + "%";
+
+    document.getElementById("progressBar")
+      .style.width = percentage + "%";
+
+    localStorage.setItem(
+      "rumiHabits",
+      JSON.stringify(
+        [...checkboxes].map(item => item.checked)
+      )
+    );
+  }
+
+
+  function loadHabits() {
+
+    const saved =
+      JSON.parse(
+        localStorage.getItem("rumiHabits")
+      );
+
+    if (!saved) return;
+
+    checkboxes.forEach((checkbox, index) => {
+      checkbox.checked = saved[index] || false;
+    });
+
+    updateProgress();
+  }
+
+
+  function resetHabits() {
+
+    checkboxes.forEach(
+      checkbox => checkbox.checked = false
+    );
+
+    localStorage.removeItem("rumiHabits");
+
+    updateProgress();
+  }
+
+
+  checkboxes.forEach(
+    checkbox =>
+      checkbox.addEventListener(
+        "change",
+        updateProgress
+      )
+  );
+
+
+  loadHabits();
+
+</script>
+
+</body>
+</html>
